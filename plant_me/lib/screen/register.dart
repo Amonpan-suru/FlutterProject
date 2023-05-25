@@ -43,6 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       }),
     );
     checkRegister(respone.body);
+    print(respone.body);
   }
 
   void checkRegister(String id) {

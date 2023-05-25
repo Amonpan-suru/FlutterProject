@@ -20,7 +20,25 @@ String _localhost() {
     return 'http://localhost:3000';
 }
 
+var products;
+var price;
+
 class CartPage extends StatelessWidget {
+  void SaveHistory() async {
+    final respone = await http.post(
+      Uri.parse(_localhost() + "/SaveHistory"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'username': Profile.username.toString(),
+        'products': products,
+        'price': price
+      }),
+    );
+    print(respone.body);
+  }
+
   const CartPage({super.key});
   @override
   Widget build(BuildContext context) {
@@ -79,8 +97,14 @@ class CartPage extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
+                        price = value.getTotalPrice().toString();
+                        products = value.getTotalProduct();
+                        print(price);
+                        print(products);
+
                         value.clearCart();
-                        print(Profile.username);
+                        SaveHistory();
+                        // print(Profile.username);
                         Navigator.push(
                             context,
                             MaterialPageRoute(

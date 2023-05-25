@@ -68,7 +68,8 @@ class Cart extends ChangeNotifier {
   List<Plant> getUserCart() {
     return userCart;
   }
-  var allprice =0;
+
+  var allprice = 0;
   // add item to cart
   void addItemToCart(Plant plant) {
     userCart.add(plant);
@@ -81,7 +82,7 @@ class Cart extends ChangeNotifier {
     print("totle :" + allprice.toString());
     notifyListeners();
   }
-  
+
   // remove item from cart
   void removeItemFromCart(Plant plant) {
     userCart.remove(plant);
@@ -95,11 +96,23 @@ class Cart extends ChangeNotifier {
     notifyListeners();
   }
 
-  void clearCart(){
+  void clearCart() {
     userCart.clear();
     allprice = 0;
   }
-  int getTotalPrice(){
+
+  int getTotalPrice() {
     return allprice;
+  }
+
+  var product;
+  String getTotalProduct() {
+    product = "";
+
+    for (var i = 0; i < userCart.length; i++) {
+      product += "[" + userCart[i].name + "]";
+    }
+
+    return product;
   }
 }

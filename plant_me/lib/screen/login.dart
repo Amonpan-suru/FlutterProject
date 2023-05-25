@@ -46,6 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
         'password': password.text
       }),
     );
+    print(respone.body);
+
     var DataSplit = respone.body.split(",");
     if (DataSplit[0] == "2") {
       Profile.username = DataSplit[1];

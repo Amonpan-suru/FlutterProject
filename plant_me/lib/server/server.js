@@ -115,18 +115,14 @@ app.post("/loginMySql",async(req,res) =>{
     }  
 })
 
-app.post("/SaveHistory",async(req,res =>{
-    let sql = `CREATE TABLE IF NOT EXISTS History (id INT AUTO_INCREMENT PRIMARY KEY, time TIMESTAMP default CURRENT_TIMESTAMP, username VARCHAR(255),product VARCHAR(255),price VARCHAR(100))`;
+app.post("/SaveHistory",async (req,res) => {
+    let sql = `CREATE TABLE IF NOT EXISTS History (id INT AUTO_INCREMENT PRIMARY KEY, time TIMESTAMP default CURRENT_TIMESTAMP, username VARCHAR(255),products VARCHAR(255),price VARCHAR(100))`;
     let result = queryDB(sql);
-}))
 
-app.get("/getprofile", async (req,res) => {
-    // let sql = `SELECT * FROM ${tablename}`;
-    let sql = `SELECT username,email, password FROM UserData`;
-    let result = await queryDB(sql);
-    result = Object.assign({},result);
-    console.log(result);
-    res.json(result);
+    sql = `INSERT INTO History (username,products, price) VALUES ("${req.body.username}","${req.body.products}","${req.body.price}")`;
+    result = queryDB(sql)
+    console.log("Save");
+    res.send("Save");
 })
 
 // update data
