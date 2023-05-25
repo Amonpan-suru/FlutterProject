@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_me/color.dart';
 import 'package:plant_me/models/cart.dart';
+import 'package:plant_me/models/newspaperList.dart';
 import 'package:provider/provider.dart';
 import 'package:plant_me/screen/openapp.dart';
 
@@ -13,8 +14,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Cart(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<Cart>(create: (context)=>Cart()),
+        ChangeNotifierProvider<Newspaper>(create: (context)=>Newspaper()),
+      ],
+      
       builder: (context, child) => MaterialApp(
         title: 'Custom Fonts',
         theme: ThemeData(

@@ -5,8 +5,50 @@ class Cart extends ChangeNotifier{
   // list of plant for sale
   List<Plant> plantmeShop = [
     Plant(
+      name: 'Ficus Leaf fig', 
+      price: '1299฿', 
+      ImagePath: 'assets/img/ficus.png',
+    ),
+
+    Plant(
+      name: 'Zanzibar Gem', 
+      price: '899฿', 
+      ImagePath: 'assets/img/zanzibar.png',
+    ),
+
+    Plant(
+      name: 'Monstera', 
+      price: '2999฿', 
+      ImagePath: 'assets/img/monstera.png',
+    ),
+
+    Plant(
+      name: 'Calathea', 
+      price: '899฿', 
+      ImagePath: 'assets/img/calathea ornata.png',
+    ),
+
+    Plant(
+      name: 'Areca Palm', 
+      price: '799฿', 
+      ImagePath: 'assets/img/areca palm.png',
+    ),
+
+    Plant(
+      name: 'Oxalis', 
+      price: '699฿', 
+      ImagePath: 'assets/img/oxalis.png',
+    ),
+
+    Plant(
+      name: 'Peperomia', 
+      price: '1099฿', 
+      ImagePath: 'assets/img/peperomia.png',
+    ),
+
+    Plant(
       name: 'Aloe vera', 
-      price: '112฿', 
+      price: '599฿', 
       ImagePath: 'assets/img/aloe vera.png',
     ),
 
@@ -14,18 +56,6 @@ class Cart extends ChangeNotifier{
       name: 'Anthurium', 
       price: '1150฿', 
       ImagePath: 'assets/img/anthurium.png',
-    ),
-
-    Plant(
-      name: 'Monstera', 
-      price: '1669฿', 
-      ImagePath: 'assets/img/monstera.png',
-    ),
-
-    Plant(
-      name: 'Ficus', 
-      price: '1376฿', 
-      ImagePath: 'assets/img/ficus.png',
     ),
   ];
 

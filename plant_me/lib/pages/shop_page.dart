@@ -49,7 +49,7 @@ class _ShopPageState extends State<ShopPage> {
         //shop list
         Expanded(
           child: ListView.builder(
-            itemCount: 4,
+            itemCount: value.getPlantList().length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context,index) {
               // create plant

@@ -27,7 +27,10 @@ class PlantsTile extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(32),
-                  child: Image.asset(plant.ImagePath)
+                  child: Image.asset(
+                    plant.ImagePath,
+                    scale: .8,
+                  )
                 ),
               ],
             ),
