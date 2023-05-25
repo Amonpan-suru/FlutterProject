@@ -15,14 +15,14 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<Cart>(
       builder: (context, value, child) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //heading
             Text(
               'My Cart',
-              style: TextStyle(color: Colors.brown[900], fontSize: 40),
+              style: TextStyle(color: brown, fontSize: 40),
             ),
 
             const SizedBox(
@@ -46,7 +46,7 @@ class CartPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
               child: RichText(
-                  text:  TextSpan(
+                  text: TextSpan(
                       style: TextStyle(
                           fontFamily: "BebasNeue", color: brown, fontSize: 20),
                       text: "Total : ",
@@ -56,7 +56,7 @@ class CartPage extends StatelessWidget {
                         color: brown,
                         fontSize: 18,
                       ),
-                      text: value.getTotalPrice().toString()+'฿',
+                      text: value.getTotalPrice().toString() + '฿',
                     )
                   ])),
             ),

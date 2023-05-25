@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
 
   //this method will update our selected Index
   //when the user taps on the buttom bar
-  void navigateBottomBar(int index){
+  void navigateBottomBar(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -34,7 +34,6 @@ class _HomePageState extends State<HomePage> {
     const ShopPage(),
     //cart page
     const CartPage(),
-    
   ];
   @override
   Widget build(BuildContext context) {
@@ -49,10 +48,10 @@ class _HomePageState extends State<HomePage> {
         leading: Builder(
           builder: (context) => IconButton(
             icon: const Padding(
-              padding: EdgeInsets.all(12.0),
+              padding: EdgeInsets.fromLTRB(18, 20, 12, 0),
               child: Icon(
                 Icons.menu,
-                color: Colors.black,
+                color: lightorange,
               ),
             ),
             onPressed: () {
@@ -70,28 +69,31 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.only(top: 32.0),
               child: Column(
                 children: [
-                   //logo
+                  //logo
                   DrawerHeader(
                     child: Image.asset(
                       'assets/img/logo.png',
                       color: brown,
                     ),
                   ),
-            
+
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Divider(
                       color: green,
                     ),
                   ),
-            
+
                   //other pages
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
-                    } ,
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()));
+                    },
                     child: const Padding(
-                      padding: EdgeInsets.only(left : 25.0),
+                      padding: EdgeInsets.only(left: 25.0),
                       child: ListTile(
                         leading: Icon(
                           Icons.home,
@@ -103,14 +105,14 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
-                          ), 
+                          ),
                         ),
                       ),
                     ),
                   ),
-            
+
                   const Padding(
-                    padding: EdgeInsets.only(left : 25.0),
+                    padding: EdgeInsets.only(left: 25.0),
                     child: ListTile(
                       leading: Icon(
                         Icons.info,
@@ -122,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 20,
-                       ),
+                        ),
                       ),
                     ),
                   )
@@ -131,29 +133,32 @@ class _HomePageState extends State<HomePage> {
             ),
             GestureDetector(
               onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
               },
               child: const Padding(
-                padding: EdgeInsets.only(left: 25.0, bottom:25),
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.logout,
+                padding: EdgeInsets.only(left: 25.0, bottom: 25),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.logout,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                  title: Text(
+                    'Logout',
+                    style: TextStyle(
                       color: Colors.white,
-                      size: 30,
-                    ),
-                    title: Text(
-                      'Logout',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
+                      fontSize: 20,
                     ),
                   ),
+                ),
               ),
             )
           ],
-        ),      
-      ),   
+        ),
+      ),
       body: _page[_selectedIndex],
     );
   }
