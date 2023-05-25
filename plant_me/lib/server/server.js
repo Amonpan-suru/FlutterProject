@@ -1,29 +1,3 @@
-// const http = require('http');
-// const hostname = '127.0.0.1';
-// const port = 3000;
-// const server = http.createServer((req, res) => {
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/plain');
-//   res.end('Hello World\n');
-// });
-// server.listen(port, hostname, () => {
-//   console.log(`Server running at http://${hostname}:${port}/`);
-// });
-
-// routing
-// const express = require('express');
-// const app = express();
-// const hostname = '127.0.0.1';
-// const port = 3000;
-
-// app.get('/hello', (req, res) => {
-//     res.send("Hello world, Hello world");
-//  });
- 
-//  app.listen(port, hostname, () => {
-//         console.log(`Server running at   http://${hostname}:${port}/`);
-// });
-
 // MySQL
 const express = require('express');
 const app = express();
@@ -84,7 +58,6 @@ app.post("/registerMySql",async(req,res) =>{
 
     let obj = Object.keys(result);
     for(var i = 0 ; i < obj.length;i++){
-        // console.log(result[obj[i]].username,result[obj[i]].email)
         if(result[obj[i]].username == req.body.username){
             // console.log("Already username")
             res.send("0");
