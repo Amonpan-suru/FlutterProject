@@ -51,6 +51,10 @@ class Cart extends ChangeNotifier {
       price: '1150฿',
       ImagePath: 'assets/img/anthurium.png',
     ),
+    Plant(
+        name: 'sansevieria',
+        price: '699฿',
+        ImagePath: 'assets/img/sansevieria.png')
   ];
 
   // list of item in user cart
