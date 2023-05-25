@@ -68,11 +68,24 @@ class Cart extends ChangeNotifier {
   List<Plant> getUserCart() {
     return userCart;
   }
-
+  var allprice =0;
   // add item to cart
   void addItemToCart(Plant plant) {
     userCart.add(plant);
-    var allprice = 0;
+    allprice = 0;
+    for (var i = 0; i < userCart.length; i++) {
+      var slitprice = userCart[i].price.split("฿");
+      // print(slitprice[0]);
+      allprice += int.parse(slitprice[0]);
+    }
+    print("totle :" + allprice.toString());
+    notifyListeners();
+  }
+  
+  // remove item from cart
+  void removeItemFromCart(Plant plant) {
+    userCart.remove(plant);
+    allprice = 0;
     for (var i = 0; i < userCart.length; i++) {
       var slitprice = userCart[i].price.split("฿");
       // print(slitprice[0]);
@@ -82,16 +95,11 @@ class Cart extends ChangeNotifier {
     notifyListeners();
   }
 
-  // remove item from cart
-  void removeItemFromCart(Plant plant) {
-    userCart.remove(plant);
-    var allprice = 0;
-    for (var i = 0; i < userCart.length; i++) {
-      var slitprice = userCart[i].price.split("฿");
-      // print(slitprice[0]);
-      allprice += int.parse(slitprice[0]);
-    }
-    print("totle :" + allprice.toString());
-    notifyListeners();
+  void clearCart(){
+    userCart.clear();
+    allprice = 0;
+  }
+  int getTotalPrice(){
+    return allprice;
   }
 }

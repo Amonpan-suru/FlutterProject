@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:plant_me/color.dart';
 import 'package:plant_me/components/bottom_nav_bar.dart';
 import 'package:plant_me/pages/cart_page.dart';
 import 'package:plant_me/pages/shop_page.dart';
+import 'package:plant_me/screen/login.dart';
 
 import 'news_page.dart';
 
@@ -60,75 +62,94 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       drawer: Drawer(
-        backgroundColor: Colors.grey[900],
+        backgroundColor: green,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Column(
-              children: [
-                 //logo
-                DrawerHeader(
-                  child: Image.asset(
-                    'assets/img/logo.png',
-                    color: Colors.white,
-                  ),
-                ),
-
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: Divider(
-                    color: Colors.grey[800],
-                  ),
-                ),
-
-                //other pages
-                const Padding(
-                  padding: EdgeInsets.only(left : 25.0),
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.home,
-                      color: Colors.white,
+            Padding(
+              padding: const EdgeInsets.only(top: 32.0),
+              child: Column(
+                children: [
+                   //logo
+                  DrawerHeader(
+                    child: Image.asset(
+                      'assets/img/logo.png',
+                      color: brown,
                     ),
-                    title: Text(
-                      'Home',
-                      style: TextStyle(
+                  ),
+            
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Divider(
+                      color: green,
+                    ),
+                  ),
+            
+                  //other pages
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const HomePage()));
+                    } ,
+                    child: const Padding(
+                      padding: EdgeInsets.only(left : 25.0),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.home,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                        title: Text(
+                          'Home',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ), 
+                        ),
+                      ),
+                    ),
+                  ),
+            
+                  const Padding(
+                    padding: EdgeInsets.only(left : 25.0),
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.info,
                         color: Colors.white,
-                      ), 
+                        size: 30,
+                      ),
+                      title: Text(
+                        'About',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                       ),
+                      ),
                     ),
-                  ),
-                ),
-
-                const Padding(
-                  padding: EdgeInsets.only(left : 25.0),
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.info,
-                      color: Colors.white,
-                    ),
-                    title: Text(
-                      'About',
-                      style: TextStyle(
-                        color: Colors.white,
-                     ),
-                    ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 25.0, bottom:25),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.logout,
-                    color: Colors.white,
-                  ),
-                  title: Text(
-                    'Logout',
-                    style: TextStyle(
+            GestureDetector(
+              onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const LoginScreen()));
+              },
+              child: const Padding(
+                padding: EdgeInsets.only(left: 25.0, bottom:25),
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.logout,
                       color: Colors.white,
+                      size: 30,
+                    ),
+                    title: Text(
+                      'Logout',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
                     ),
                   ),
-                ),
+              ),
             )
           ],
         ),      

@@ -46,7 +46,7 @@ class CartPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
               child: RichText(
-                  text: const TextSpan(
+                  text:  TextSpan(
                       style: TextStyle(
                           fontFamily: "BebasNeue", color: brown, fontSize: 20),
                       text: "Total : ",
@@ -56,7 +56,7 @@ class CartPage extends StatelessWidget {
                         color: brown,
                         fontSize: 18,
                       ),
-                      text: '0฿ ',
+                      text: value.getTotalPrice().toString()+'฿',
                     )
                   ])),
             ),
@@ -68,6 +68,7 @@ class CartPage extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
+                        value.clearCart();
                         Navigator.push(
                             context,
                             MaterialPageRoute(

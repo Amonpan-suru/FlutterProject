@@ -20,7 +20,7 @@ class PlantsTile extends StatelessWidget {
         children: [
           //plant pic
           Padding(
-            padding: const EdgeInsets.only(top: 25.0),
+            padding: const EdgeInsets.only(top: 10.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,7 +29,7 @@ class PlantsTile extends StatelessWidget {
                   borderRadius: BorderRadius.circular(32),
                   child: Image.asset(
                     plant.ImagePath,
-                    scale: .8,
+                    scale: .9,
                   )
                 ),
               ],
