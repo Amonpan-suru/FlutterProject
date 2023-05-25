@@ -26,14 +26,14 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<Cart>(
       builder: (context, value, child) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //heading
             Text(
               'My Cart',
-              style: TextStyle(color: Colors.brown[900], fontSize: 40),
+              style: TextStyle(color: brown, fontSize: 35),
             ),
 
             const SizedBox(
