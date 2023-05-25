@@ -12,6 +12,7 @@
         },
         {
             "name": "plant_me (profile mode)",
+            "program": "lib/week16/db_mysql.dart",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile"

@@ -4,6 +4,17 @@ import 'package:plant_me/color.dart';
 import 'package:plant_me/pages/home_page.dart';
 import 'package:plant_me/screen/register.dart';
 
+import 'package:http/http.dart' as http;
+import 'dart:io';
+import 'dart:convert';
+
+String _localhost() {
+  if (Platform.isAndroid)
+    return 'http://10.0.2.2:3000';
+  else // for iOS simulator
+    return 'http://localhost:3000';
+}
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -12,6 +23,67 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
+  Future? serverResponse;
+
+  void LoginMysql() async {
+    if (username.text == "" && password.text == "") {
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (context) {
+        return const HomePage();
+      }));
+      return;
+    }
+    final respone = await http.post(
+      Uri.parse(_localhost() + "/loginMySql"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'username': username.text,
+        'password': password.text
+      }),
+    );
+    checkLoginMysql(respone.body);
+  }
+
+  void checkLoginMysql(String id) {
+    switch (id) {
+      case "0":
+        {
+          showDialog(
+            context: context,
+            builder: (context) => const AlertDialog(
+              title: Text('Failed Login!'),
+              content: Text('Username is wong'),
+            ),
+          );
+        }
+        break;
+      case "1":
+        {
+          showDialog(
+            context: context,
+            builder: (context) => const AlertDialog(
+              title: Text('Failed Login!'),
+              content: Text('Password is wong'),
+            ),
+          );
+        }
+        break;
+      case "2":
+        {
+          print("Login Complete");
+          Navigator.of(context)
+              .pushReplacement(MaterialPageRoute(builder: (context) {
+            return const HomePage();
+          }));
+        }
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
                   child: TextFormField(
+                    controller: username,
                     decoration: InputDecoration(
                       labelText: "Username",
                       labelStyle: const TextStyle(
@@ -64,6 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 2, 30, 0),
                   child: TextFormField(
+                    controller: password,
                     decoration: InputDecoration(
                       labelText: "Password",
                       labelStyle: const TextStyle(
@@ -85,10 +159,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const HomePage()));
+                            LoginMysql();
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => const HomePage()));
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: green,

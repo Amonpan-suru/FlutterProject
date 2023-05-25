@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_nav_bar: ^5.0.6
   provider:
+  http: ^1.0.0
+  debug_console: ^0.0.1
 
 dev_dependencies:
   flutter_test:

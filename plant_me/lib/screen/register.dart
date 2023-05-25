@@ -1,7 +1,13 @@
+import 'package:debug_console/debug_console.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:plant_me/color.dart';
 import 'package:plant_me/screen/login.dart';
+
+import 'package:http/http.dart' as http;
+import 'dart:io';
+import 'dart:convert';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -10,7 +16,71 @@ class RegisterScreen extends StatefulWidget {
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
+String _localhost() {
+  if (Platform.isAndroid)
+    return 'http://10.0.2.2:3000';
+  else // for iOS simulator
+    return 'http://localhost:3000';
+}
+
 class _RegisterScreenState extends State<RegisterScreen> {
+  TextEditingController username = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  Future? serverResponse;
+
+  void RegisterMysql() async {
+    if (username.text == "" || email.text == "" || password.text == "") return;
+    final respone = await http.post(
+      Uri.parse(_localhost() + "/registerMySql"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'username': username.text,
+        'email': email.text,
+        'password': password.text
+      }),
+    );
+    checkRegister(respone.body);
+  }
+
+  void checkRegister(String id) {
+    switch (id) {
+      case "0":
+        {
+          showDialog(
+            context: context,
+            builder: (context) => const AlertDialog(
+              title: Text('Failed Register!'),
+              content: Text('this Username is already taken'),
+            ),
+          );
+        }
+        break;
+      case "1":
+        {
+          showDialog(
+            context: context,
+            builder: (context) => const AlertDialog(
+              title: Text('Failed Register!'),
+              content: Text('this Email is already taken'),
+            ),
+          );
+        }
+        break;
+      case "2":
+        {
+          print("Register Complete");
+          Navigator.of(context)
+              .pushReplacement(MaterialPageRoute(builder: (context) {
+            return const LoginScreen();
+          }));
+        }
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
                 child: TextFormField(
+                  controller: username,
                   decoration: InputDecoration(
                     labelText: "Username",
                     labelStyle: const TextStyle(
@@ -54,6 +125,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(30, 2, 30, 0),
                 child: TextFormField(
+                  controller: email,
                   decoration: InputDecoration(
                     labelText: "E-mail",
                     labelStyle: const TextStyle(
@@ -73,6 +145,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(30, 2, 30, 0),
                 child: TextFormField(
+                  controller: password,
                   decoration: InputDecoration(
                     labelText: "Password",
                     labelStyle: const TextStyle(
@@ -92,7 +165,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   height: 50,
                   width: double.infinity,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        RegisterMysql();
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: green,
                           shape: RoundedRectangleBorder(
