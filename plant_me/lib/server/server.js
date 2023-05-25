@@ -81,17 +81,19 @@ app.post("/registerMySql",async(req,res) =>{
 
 app.post("/loginMySql",async(req,res) =>{
 
-    let sql = "SELECT username , password FROM UserData";
+    let sql = "SELECT username ,email, password FROM UserData";
     let result = await queryDB(sql);
     result = Object.assign({},result);
     
     let checkusername = false;
     let checkpassword = false;
 
+    let currentEmail;
     let obj = Object.keys(result);
     for(var i = 0 ; i < obj.length;i++){
         if(result[obj[i]].username == req.body.username){
             checkusername = true;
+            currentEmail = result[obj[i]].email;
             console.log(result[obj[i]].username);
         }
         if(checkusername){
@@ -100,17 +102,31 @@ app.post("/loginMySql",async(req,res) =>{
                 console.log(result[obj[i]].password)
                 break;
             }
-            res.send("1");
+            res.send("1,");
             break;
         }
     }
     if(checkusername == false)
-    res.send("0");
+    res.send("0,");
 
     if(checkusername && checkpassword){
-        res.send("2");
+        res.send("2," + req.body.username+","+currentEmail+","+req.body.password);
         console.log("LoginComplete");
     }  
+})
+
+app.post("/SaveHistory",async(req,res =>{
+    let sql = `CREATE TABLE IF NOT EXISTS History (id INT AUTO_INCREMENT PRIMARY KEY, time TIMESTAMP default CURRENT_TIMESTAMP, username VARCHAR(255),product VARCHAR(255),price VARCHAR(100))`;
+    let result = queryDB(sql);
+}))
+
+app.get("/getprofile", async (req,res) => {
+    // let sql = `SELECT * FROM ${tablename}`;
+    let sql = `SELECT username,email, password FROM UserData`;
+    let result = await queryDB(sql);
+    result = Object.assign({},result);
+    console.log(result);
+    res.json(result);
 })
 
 // update data

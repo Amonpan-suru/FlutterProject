@@ -5,12 +5,23 @@ import 'package:plant_me/models/plant.dart';
 import 'package:plant_me/pages/home_page.dart';
 import 'package:plant_me/screen/thankyou.dart';
 import 'package:provider/provider.dart';
+import 'package:plant_me/models/profile.dart';
 
 import '../components/cart_item.dart';
 
+import 'package:http/http.dart' as http;
+import 'dart:io';
+import 'dart:convert';
+
+String _localhost() {
+  if (Platform.isAndroid)
+    return 'http://10.0.2.2:3000';
+  else // for iOS simulator
+    return 'http://localhost:3000';
+}
+
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Consumer<Cart>(
@@ -46,7 +57,7 @@ class CartPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
               child: RichText(
-                  text:  TextSpan(
+                  text: TextSpan(
                       style: TextStyle(
                           fontFamily: "BebasNeue", color: brown, fontSize: 20),
                       text: "Total : ",
@@ -56,7 +67,7 @@ class CartPage extends StatelessWidget {
                         color: brown,
                         fontSize: 18,
                       ),
-                      text: value.getTotalPrice().toString()+'฿',
+                      text: value.getTotalPrice().toString() + '฿',
                     )
                   ])),
             ),
@@ -69,6 +80,7 @@ class CartPage extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         value.clearCart();
+                        print(Profile.username);
                         Navigator.push(
                             context,
                             MaterialPageRoute(

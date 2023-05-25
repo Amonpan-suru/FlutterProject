@@ -1,8 +1,19 @@
-class Profile {
-  late String username;
-  late String email;
-  late String password;
+import 'dart:ffi';
 
-  Profile(
-      {required this.username, required this.email, required this.password});
+class Profile {
+  static late String username;
+  static late String email;
+  static late String password;
+
+  static void setProFile(String Username, String Email, String Password) {
+    username = Username;
+    email = Email;
+    password = Password;
+  }
+
+  static void Clear() {
+    username = "";
+    email = "";
+    password = "";
+  }
 }

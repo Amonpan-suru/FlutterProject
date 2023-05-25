@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:plant_me/color.dart';
+import 'package:plant_me/models/profile.dart';
 import 'package:plant_me/pages/home_page.dart';
 import 'package:plant_me/screen/register.dart';
 
@@ -45,7 +46,16 @@ class _LoginScreenState extends State<LoginScreen> {
         'password': password.text
       }),
     );
-    checkLoginMysql(respone.body);
+    var DataSplit = respone.body.split(",");
+    if (DataSplit[0] == "2") {
+      Profile.username = DataSplit[1];
+      Profile.email = DataSplit[2];
+      Profile.password = DataSplit[3];
+
+      print(Profile.username + Profile.email + Profile.password);
+    }
+    checkLoginMysql(DataSplit[0]);
+    print(DataSplit[0]);
   }
 
   void checkLoginMysql(String id) {
