@@ -37,8 +37,18 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(255, 254, 241, 1),
+    return Stack(
+        children: <Widget>[
+          Image.asset(
+            "assets/img/ex1.png",
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
+          ),
+        
+    
+    Scaffold(
+      backgroundColor: Colors.transparent,
       bottomNavigationBar: MyBottomNavBar(
         onTabChange: (index) => navigateBottomBar(index),
       ),
@@ -160,6 +170,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: _page[_selectedIndex],
-    );
+    ),],);
   }
 }

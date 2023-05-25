@@ -8,6 +8,9 @@ class MyBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+      ),
       padding: const EdgeInsets.fromLTRB(10, 5, 10, 30),
       child: GNav(
         color: const Color.fromRGBO(172, 194, 112, 0.5),
