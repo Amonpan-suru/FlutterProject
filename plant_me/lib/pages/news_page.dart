@@ -34,7 +34,7 @@ class _NewsPageState extends State<NewsPage> {
               'News',
               style: TextStyle(
                 color: brown,
-                fontSize: 40,
+                fontSize: 35,
               ),
             ),
           ),

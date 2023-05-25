@@ -22,7 +22,7 @@ class CartPage extends StatelessWidget {
             //heading
             Text(
               'My Cart',
-              style: TextStyle(color: brown, fontSize: 40),
+              style: TextStyle(color: brown, fontSize: 35),
             ),
 
             const SizedBox(

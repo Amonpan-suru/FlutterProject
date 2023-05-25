@@ -47,7 +47,7 @@ class _ShopPageState extends State<ShopPage> {
               'PLANTME',
               style: TextStyle(
                 color: brown,
-                fontSize: 40,
+                fontSize: 35,
               ),
             ),
           ),
@@ -71,7 +71,7 @@ class _ShopPageState extends State<ShopPage> {
           ),
 
           const Padding(
-            padding: EdgeInsets.only(top: 45.0, left: 25, right: 25),
+            padding: EdgeInsets.only(top: 65.0, left: 25, right: 25),
             child: Divider(
               color: Colors.white,
             ),
