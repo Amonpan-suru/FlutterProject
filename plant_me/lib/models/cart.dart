@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:plant_me/models/plant.dart';
 
-class Cart extends ChangeNotifier{
+import 'dart:convert';
+
+class Cart extends ChangeNotifier {
   // list of plant for sale
   List<Plant> plantmeShop = [
     Plant(
-      name: 'Aloe vera', 
-      price: '112฿', 
+      name: 'Aloe vera',
+      price: '112฿',
       ImagePath: 'assets/img/aloe vera.png',
     ),
-
     Plant(
-      name: 'Anthurium', 
-      price: '1150฿', 
+      name: 'Anthurium',
+      price: '1150฿',
       ImagePath: 'assets/img/anthurium.png',
     ),
-
     Plant(
-      name: 'Monstera', 
-      price: '1669฿', 
+      name: 'Monstera',
+      price: '1669฿',
       ImagePath: 'assets/img/monstera.png',
     ),
-
     Plant(
-      name: 'Ficus', 
-      price: '1376฿', 
+      name: 'Ficus',
+      price: '1376฿',
       ImagePath: 'assets/img/ficus.png',
     ),
   ];
@@ -35,18 +34,35 @@ class Cart extends ChangeNotifier{
   List<Plant> getPlantList() {
     return plantmeShop;
   }
-  // get cart 
+
+  // get cart
   List<Plant> getUserCart() {
     return userCart;
   }
+
   // add item to cart
-  void addItemToCart(Plant plant){
+  void addItemToCart(Plant plant) {
     userCart.add(plant);
+    var allprice = 0;
+    for (var i = 0; i < userCart.length; i++) {
+      var slitprice = userCart[i].price.split("฿");
+      // print(slitprice[0]);
+      allprice += int.parse(slitprice[0]);
+    }
+    print("totle :" + allprice.toString());
     notifyListeners();
   }
+
   // remove item from cart
-  void removeItemFromCart(Plant plant){
+  void removeItemFromCart(Plant plant) {
     userCart.remove(plant);
+    var allprice = 0;
+    for (var i = 0; i < userCart.length; i++) {
+      var slitprice = userCart[i].price.split("฿");
+      // print(slitprice[0]);
+      allprice += int.parse(slitprice[0]);
+    }
+    print("totle :" + allprice.toString());
     notifyListeners();
   }
 }
