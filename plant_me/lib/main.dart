@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plant_me/color.dart';
 import 'package:plant_me/models/cart.dart';
 import 'package:plant_me/models/newspaperList.dart';
+import 'package:plant_me/models/serveritem.dart';
 import 'package:provider/provider.dart';
 import 'package:plant_me/screen/openapp.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<Cart>(create: (context)=>Cart()),
         ChangeNotifierProvider<Newspaper>(create: (context)=>Newspaper()),
+        ChangeNotifierProvider<infoServers>(create: (context)=>infoServers()),
       ],
       
       builder: (context, child) => MaterialApp(

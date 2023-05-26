@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:plant_me/color.dart';
 import 'package:plant_me/models/plant.dart';
 
 
 class PlantsTile extends StatelessWidget {
   Plant plant;
   void Function()? onTap;
-  PlantsTile({super.key, required this.plant, required this.onTap,});
+  void Function()? detail;
+  PlantsTile({super.key, required this.plant, required this.onTap,required this.detail});
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +22,25 @@ class PlantsTile extends StatelessWidget {
         children: [
           //plant pic
           Padding(
-            padding: const EdgeInsets.only(top:13.0),
+            padding: const EdgeInsets.only(top:15.0),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
+                GestureDetector(
+                  onTap: detail,
+                  child: const Icon(
+                    Icons.info,
+                    color: brown,
+                    weight: 40,
+                    size: 25.0,
+                  ),
+                ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(32),
                   child: Image.asset(
                     plant.ImagePath,
-                    scale: .95,
+                    scale: 1,
                   )
                 ),
               ],
@@ -65,7 +76,8 @@ class PlantsTile extends StatelessWidget {
                               plant.price,
                               style: TextStyle(
                                 color: Colors.brown,
-                                fontSize: 18,
+                                fontSize: 20,
+                                fontFamily: 'Sarabun'
                               )
                             )
                           ],

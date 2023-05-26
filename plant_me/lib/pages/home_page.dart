@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:plant_me/color.dart';
 import 'package:plant_me/components/bottom_nav_bar.dart';
 import 'package:plant_me/pages/cart_page.dart';
+import 'package:plant_me/pages/profile_page.dart';
 import 'package:plant_me/pages/shop_page.dart';
+import 'package:plant_me/screen/about.dart';
 import 'package:plant_me/screen/login.dart';
 
 import 'news_page.dart';
@@ -26,6 +28,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+
   //page to display
   final List<Widget> _page = [
     //news page
@@ -34,6 +37,8 @@ class _HomePageState extends State<HomePage> {
     const ShopPage(),
     //cart page
     const CartPage(),
+    //about page
+    const ShopPage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -121,19 +126,51 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
 
-                  const Padding(
-                    padding: EdgeInsets.only(left: 25.0),
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.info,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      title: Text(
-                        'About',
-                        style: TextStyle(
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const profilePage()));
+                    },
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 25.0),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.account_circle,
                           color: Colors.white,
-                          fontSize: 20,
+                          size: 30,
+                        ),
+                        title: Text(
+                          'Account',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  GestureDetector(
+                    onTap:() => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const AboutScreen())),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 25.0),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.info,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                        title: Text(
+                          'About',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          ),
                         ),
                       ),
                     ),

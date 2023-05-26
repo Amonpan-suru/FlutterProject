@@ -66,6 +66,9 @@ flutter:
     - family: BebasNeue
       fonts:
         - asset: assets/fonts/BebasNeue-Regular.ttf
+    - family: Sarabun
+      fonts:
+        - asset: assets/fonts/THSarabunNew.ttf
 
   assets:     
     - assets/img/

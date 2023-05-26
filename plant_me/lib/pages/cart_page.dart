@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:plant_me/color.dart';
 import 'package:plant_me/models/cart.dart';
 import 'package:plant_me/models/plant.dart';
-import 'package:plant_me/pages/home_page.dart';
 import 'package:plant_me/screen/thankyou.dart';
 import 'package:provider/provider.dart';
 import 'package:plant_me/models/profile.dart';

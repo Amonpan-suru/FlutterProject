@@ -1,22 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:plant_me/color.dart';
-import 'package:plant_me/models/newspaperList.dart';
-import 'package:plant_me/pages/home_page.dart';
-import 'package:plant_me/pages/profile_page.dart';
+import 'package:plant_me/components/history_item.dart';
+import 'package:plant_me/components/item_from_server.dart';
+import 'package:plant_me/models/cart.dart';
+import 'package:plant_me/models/plant.dart';
+import 'package:plant_me/models/serveritem.dart';
 import 'package:plant_me/screen/about.dart';
-import 'package:plant_me/screen/login.dart';
 import 'package:provider/provider.dart';
 
-class DetailNewsPage extends StatelessWidget {
-  const DetailNewsPage({super.key});
+import '../screen/login.dart';
+import 'home_page.dart';
+
+class profilePage extends StatefulWidget {
+  const profilePage({super.key});
+
+  @override
+  State<profilePage> createState() => _profilePageState();
+}
+
+class _profilePageState extends State<profilePage> {
+  void ClickOrder(OrderHistory orderHistory) {
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Order No. '+ orderHistory.ordernumber),
+          content: SizedBox(
+            width: double.maxFinite,
+            child: ListView.builder(
+                itemCount: orderHistory.plantlist.length,
+                  itemBuilder: (context, index) {
+                    // get individual plant
+                    Plant individualPlant = orderHistory.plantlist[index];
+          
+                    //return cart item
+                    return HistoryItem(
+                      plant: individualPlant,
+                    );
+                  },
+                ),
+          ),
+        ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<Newspaper>(
-      builder: (context, value, child) => Scaffold(
-        backgroundColor: lightyellow,
-        appBar: AppBar(
+    return Consumer<infoServers> (
+      builder: (context, value, child) => 
+      Stack(
+        children: <Widget>[
+          Image.asset(
+            "assets/img/ex1.png",
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            fit: BoxFit.cover,
+          ),
+      Scaffold(
         backgroundColor: Colors.transparent,
+        appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(206, 218, 173, 0.53),
         elevation: 0,
         leading: Builder(
           builder: (context) => IconButton(
@@ -50,8 +92,8 @@ class DetailNewsPage extends StatelessWidget {
                     ),
                   ),
             
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25),
                     child: Divider(
                       color: green,
                     ),
@@ -156,75 +198,74 @@ class DetailNewsPage extends StatelessWidget {
           ],
         ),      
       ), 
-        body: SafeArea(
-          top: true,
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
+      body: SafeArea(
+        top: true,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 300,
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(206, 218, 173, 0.53),
+                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(60) ,bottomRight: Radius.circular(60))
+              ),
+              child: Column(
+                children: [
+                  Image.asset(
+                    'assets/img/logo.png',
+                    scale: .85,
+                  ),
+                  const SizedBox(height: 15,),
+                  Text(
+                    value.getUserName(),
+                    style: TextStyle(
+                      fontSize: 23
+                    ),
+                  ),
+                  const SizedBox(height: 15,),
+                  Text(
+                    'Email : ' + value.getEmail(),
+                    style: TextStyle(
+                      fontSize: 20
+                    ),
+                  ),
+                ],
+              ),   
+            ),
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 20,),
                 Padding(
-                  padding: const EdgeInsets.only(left: 32,right: 32,top: 20),
+                  padding: EdgeInsets.only(left: 50.0,top: 40,bottom: 20),
                   child: Text(
-                    value.getCurrentAticle().newstopic,
+                    'History',
                     style: TextStyle(
-                      color: brown,
-                      fontSize: 24,
+                      fontSize: 23
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 32,right: 32,top: 10,bottom: 10),
-                  child: Text(
-                      value.getCurrentAticle().author,
-                  ),
-                ),
-                Center(
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(30),
-                        bottomRight: Radius.circular(30),
-                        topLeft: Radius.circular(0),
-                        topRight: Radius.circular(0),
-                      ),
-                      child: Image.asset(
-                        value.getCurrentAticle().imagePathDetail,
-                      ),
-                    ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 0,right: 0,top: 20),
-                  child: Container(
-                    padding: EdgeInsets.only(left:35,right: 35,top: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(
-                          value.getCurrentAticle().detail,
-                          style: TextStyle(
-                            color: brown,
-                            fontSize: 16,
-                            fontFamily: 'Sarabun'
-                          ),
-                        ),
-                        SizedBox(height: 60,)
-                      ],
-                    ),
-                    
-                  ),
-                )     
+                
               ],
             ),
+            Expanded(
+              child: ListView.builder(
+              itemCount: value.getorderHistory().length,
+              itemBuilder: (context, index) {
+                OrderHistory individualhistory = value.getorderHistory()[index];
+                return ServerItemClass(
+                orderHistory: individualhistory, historyfunc: () => ClickOrder(individualhistory),
+                );
+                },
+              ),
+            ),
             
-          ),
+          ],
         ),
-        
+      ),     
       )
+    ]),
     );
     
   }

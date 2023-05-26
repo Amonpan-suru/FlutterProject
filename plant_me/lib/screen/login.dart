@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
             context: context,
             builder: (context) => const AlertDialog(
               title: Text('Failed Login!'),
-              content: Text('Username is wong'),
+              content: Text('Username is wrong'),
             ),
           );
         }
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
             context: context,
             builder: (context) => const AlertDialog(
               title: Text('Failed Login!'),
-              content: Text('Password is wong'),
+              content: Text('Password is wrong'),
             ),
           );
         }
@@ -129,12 +129,20 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 10, 30, 0),
                   child: TextFormField(
+                    style: TextStyle(
+                      fontFamily: 'Sarabun',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                    ),
                     controller: username,
                     decoration: InputDecoration(
                       labelText: "Username",
                       labelStyle: const TextStyle(
-                        color: lightergreen, fontSize: 16, //<-- SEE HERE
+                        color: lightergreen, fontSize: 16,
+                        fontFamily: 'BebasNeue'
+                         //<-- SEE HERE
                       ),
+                      
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
                             width: 3, color: lightergreen), //<-- SEE HERE
@@ -149,11 +157,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 2, 30, 0),
                   child: TextFormField(
+                    style: TextStyle(
+                      fontFamily: 'Sarabun',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                    ),
                     controller: password,
                     decoration: InputDecoration(
                       labelText: "Password",
                       labelStyle: const TextStyle(
-                        color: lightergreen, fontSize: 16, //<-- SEE HERE
+                        color: lightergreen, fontSize: 16,
+                        fontFamily: 'BebasNeue' //<-- SEE HERE
                       ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: const BorderSide(
