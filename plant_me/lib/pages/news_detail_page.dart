@@ -223,8 +223,9 @@ class DetailNewsPage extends StatelessWidget {
                                 value.getCurrentAticle().detail,
                                 style: TextStyle(
                                     color: brown,
-                                    fontSize: 16,
+                                    fontSize: 20,
                                     fontFamily: 'Sarabun'),
+                                    
                               ),
                               SizedBox(
                                 height: 60,

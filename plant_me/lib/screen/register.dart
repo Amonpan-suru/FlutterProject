@@ -107,10 +107,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
                 child: TextFormField(
                   controller: username,
+                  style: TextStyle(
+                      fontFamily: 'Sarabun',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                    ),
                   decoration: InputDecoration(
                     labelText: "Username",
                     labelStyle: const TextStyle(
-                      color: lightergreen, fontSize: 16, //<-- SEE HERE
+                      color: lightergreen, fontSize: 16,
+                      fontFamily: 'BebasNeue' //<-- SEE HERE
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
@@ -127,10 +133,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 padding: const EdgeInsets.fromLTRB(30, 2, 30, 0),
                 child: TextFormField(
                   controller: email,
+                  style: TextStyle(
+                      fontFamily: 'Sarabun',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                    ),
                   decoration: InputDecoration(
                     labelText: "E-mail",
                     labelStyle: const TextStyle(
-                      color: lightergreen, fontSize: 16, //<-- SEE HERE
+                      color: lightergreen, fontSize: 16, 
+                      fontFamily: 'BebasNeue'//<-- SEE HERE
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
@@ -147,10 +159,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 padding: const EdgeInsets.fromLTRB(30, 2, 30, 0),
                 child: TextFormField(
                   controller: password,
+                  style: TextStyle(
+                      fontFamily: 'Sarabun',
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                    ),
                   decoration: InputDecoration(
                     labelText: "Password",
                     labelStyle: const TextStyle(
-                      color: lightergreen, fontSize: 16, //<-- SEE HERE
+                      color: lightergreen, fontSize: 16,
+                      fontFamily: 'BebasNeue' //<-- SEE HERE
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(

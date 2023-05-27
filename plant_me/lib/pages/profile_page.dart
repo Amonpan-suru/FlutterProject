@@ -23,6 +23,9 @@ class _profilePageState extends State<profilePage> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
+        backgroundColor: lightyellow,
+        shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(30))),
         title: Text('Order No. ' + orderHistory.ordernumber),
         content: SizedBox(
           width: double.maxFinite,
