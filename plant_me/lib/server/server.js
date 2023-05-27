@@ -125,6 +125,16 @@ app.post("/SaveHistory",async (req,res) => {
     res.send("Save");
 })
 
+app.post("/gethistory", async (req,res) => {
+    // let sql = `SELECT * FROM ${tablename}`;
+    let sql = `SELECT products,price FROM History WHERE username = '${req.body.username}'`;
+    let result = await queryDB(sql);
+    result = Object.assign({},result);
+    res.json(result);
+    JSON.stringify(result);
+    console.log(result);
+})
+
 // update data
 app.post("/updateDB",async (req,res) => {
     let sql = `UPDATE ${tablename} SET password = '${req.body.password}' WHERE username = '${req.body.username}'`;

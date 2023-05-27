@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_me/color.dart';
+import 'package:plant_me/models/serveritem.dart';
 import 'package:plant_me/pages/home_page.dart';
 import 'package:plant_me/pages/profile_page.dart';
 import 'package:plant_me/screen/login.dart';
@@ -81,53 +82,54 @@ class AboutScreen extends StatelessWidget {
                     ),
 
                     GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const profilePage()));
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.only(left: 25.0),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.account_circle,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                        title: Text(
-                          'Account',
-                          style: TextStyle(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const profilePage()));
+                        infoServers.gethistory();
+                      },
+                      child: const Padding(
+                        padding: EdgeInsets.only(left: 25.0),
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.account_circle,
                             color: Colors.white,
-                            fontSize: 20,
+                            size: 30,
+                          ),
+                          title: Text(
+                            'Account',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  GestureDetector(
-                    onTap:() => Navigator.push(
+                    GestureDetector(
+                      onTap: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const AboutScreen())),
-                    child: const Padding(
-                      padding: EdgeInsets.only(left: 25.0),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.info,
-                          color: Colors.white,
-                          size: 30,
-                        ),
-                        title: Text(
-                          'About',
-                          style: TextStyle(
+                      child: const Padding(
+                        padding: EdgeInsets.only(left: 25.0),
+                        child: ListTile(
+                          leading: Icon(
+                            Icons.info,
                             color: Colors.white,
-                            fontSize: 20,
+                            size: 30,
+                          ),
+                          title: Text(
+                            'About',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  )
+                    )
                   ],
                 ),
               ),
